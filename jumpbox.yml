@@ -9,13 +9,13 @@ releases:
 
 resource_pools:
 - name: vms
-  network: private
+  network: default
   env:
     bosh:
       password: "*"
 
 networks:
-- name: private
+- name: default
   type: manual
   subnets:
   - range: ((internal_cidr))
@@ -40,7 +40,7 @@ instance_groups:
         public_key: ((jumpbox_ssh.public_key))
   resource_pool: vms
   networks:
-  - name: private
+  - name: default
     static_ips: [((internal_ip))]
     default: [dns, gateway]
   - name: public
